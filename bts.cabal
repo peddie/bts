@@ -1,0 +1,59 @@
+Name: bts
+Version: 0.0.1
+Author: Vera te Velde <vtvelde@econ.berkeley.edu>
+        Matthew Peddie <peddie@alum.mit.edu>
+Maintainer: Matthew Peddie <peddie@alum.mit.edu>
+License: BSD3
+License-File: LICENSE.md
+stability: Experimental
+Synopsis: Bayesian Truth Serum for making collective predictions
+Description: A library and web application for applying the Bayesian Truth Serum methods to gathering information and making predictions with correctly aligned incentives.
+Category: Economics
+Cabal-Version: >= 1.10
+Build-Type: Simple
+
+Library
+  Default-Language: Haskell2010
+  Exposed-Modules: Storage
+                 , BTS
+  Build-Depends: base >= 4 && < 5
+               , vector >= 0.10.0.0
+               , persistent >= 1.2.3.0
+               , persistent-template >= 1.2.0
+               , persistent-sqlite >= 1.2.0
+               , transformers >= 0.3
+
+Executable bts-site
+  Default-language: Haskell2010
+  GHC-Options: -threaded -rtsopts -O2
+  Main-Is: YesodExample.hs
+  Build-Depends: base >= 4 && < 5
+               , bts
+               , monad-logger >= 0.3.3
+               , resourcet >= 0.4.9
+               , persistent-sqlite >= 1.2.0
+               , yesod >= 1.2
+
+Test-Suite doctest
+  Type: exitcode-stdio-1.0
+  Default-Language: Haskell2010
+  HS-Source-Dirs: test
+  Ghc-Options: -threaded -O2
+  Main-Is: doctest.hs
+  Build-Depends: base
+               , bts
+               , doctest >= 0.9.9
+
+Test-Suite spec
+  Type: exitcode-stdio-1.0
+  Default-Language: Haskell2010
+  Hs-Source-Dirs: test
+  Ghc-Options: -threaded -O2
+  Main-Is: Spec.hs
+  Other-Modules: BTSSpec
+  Build-Depends: base
+               , bts
+               , hspec >= 1.3
+               , vector > 0.10
+               , QuickCheck >= 2.6
+               , hspec-discover >= 0.2.0
